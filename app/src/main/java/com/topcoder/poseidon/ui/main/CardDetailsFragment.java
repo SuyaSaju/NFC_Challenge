@@ -12,13 +12,13 @@ import com.topcoder.poseidon.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link CardDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 @SuppressWarnings("WeakerAccess")
-public class HomeFragment extends Fragment {
+public class CardDetailsFragment extends Fragment {
 
-    public HomeFragment() {
+    public CardDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -26,10 +26,10 @@ public class HomeFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment CardDetailsFragment.
      */
-    static HomeFragment newInstance() {
-        return new HomeFragment();
+    static CardDetailsFragment newInstance() {
+        return new CardDetailsFragment();
     }
 
     @Override

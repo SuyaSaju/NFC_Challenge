@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Poseidon-POC</string>
-    <string name="tab_text_home">Home</string>
+    <string name="tab_text_home">Card Details</string>
     <string name="tab_text_scanner">Scan &amp; Pay</string>
     <string name="tab_tap_and_scanner">Tap &amp; Pay</string>
 
