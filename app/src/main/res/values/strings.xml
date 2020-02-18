@@ -2,6 +2,7 @@
     <string name="app_name">Poseidon-POC</string>
     <string name="tab_text_home">Home</string>
     <string name="tab_text_scanner">Scan &amp; Pay</string>
+    <string name="tab_tap_and_scanner">Tap &amp; Pay</string>
 
     <string name="home_fragment">Welcome!</string>
     <string name="scan_result_title">Confirm</string>
@@ -9,4 +10,5 @@
     <string name="scan_result_confirm">OK</string>
     <string name="successfully_paid_msg">Successfully paid.</string>
     <string name="successfully_paid_close">Close</string>
+    <string name="card_title">Loyalty Card</string>
 </resources>

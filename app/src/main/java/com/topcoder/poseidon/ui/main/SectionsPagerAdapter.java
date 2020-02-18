@@ -17,10 +17,10 @@ import com.topcoder.poseidon.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     public static final int HOME_TAB_INDEX = 0;
-    public static final int SCANNER_TAB_INDEX = 1;
+    public static final int SCANNER_TAB_INDEX = 2;
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[] {R.string.tab_text_home, R.string.tab_text_scanner};
+    private static final int[] TAB_TITLES = new int[] {R.string.tab_text_home, R.string.tab_text_scanner, R.string.tab_tap_and_scanner};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, @NonNull FragmentManager fm) {
@@ -33,6 +33,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 1) {
             return ScannerFragment.newInstance();
+        } else if (position == 2) {
+            return NFCPaymentFragment.newInstance();
         }
         return HomeFragment.newInstance();
     }

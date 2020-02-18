@@ -1,2 +1,3 @@
-include ':app'
+include ':app', ':cardreadersimulator'
 rootProject.name='Poseidon-POC'
+project(":app").name = "loyalty-card"
