@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Poseidon-POC</string>
+    <string name="tab_text_home">Home</string>
+    <string name="tab_text_scanner">Scan &amp; Pay</string>
+
+    <string name="home_fragment">Welcome!</string>
+    <string name="scan_result_title">Confirm</string>
+    <string name="scan_result_cancel">Cancel</string>
+    <string name="scan_result_confirm">OK</string>
+    <string name="successfully_paid_msg">Successfully paid.</string>
+    <string name="successfully_paid_close">Close</string>
+</resources>
