@@ -111,38 +111,33 @@ public class LoyaltyCardService extends HostApduService {
 
     @Override
     public byte[] processCommandApdu(byte[] commandApdu, Bundle extras) {
-        Log.i(TAG, "Received APDU: " + ByteArrayToHexString(commandApdu));
+        String commandString = ByteArrayToHexString(commandApdu);
+        String getDataAdpuString = ByteArrayToHexString(GET_DATA_APDU);
+        Log.i(TAG, "Received APDU: " + commandString);
         // If the APDU matches the SELECT AID command for this service,
         // send the loyalty card account number, followed by a SELECT_OK status trailer (0x9000).
         if (Arrays.equals(SELECT_APDU, commandApdu)) {
             String account = CardStorage.INSTANCE.getLastSavedCardNumber();
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
-//            readFromFile();
-            NFCPaymentSuccessScreen.Companion.launch(this);
 
             return ConcatArrays(accountBytes, SELECT_OK_SW);
-        } else if ((Arrays.equals(GET_DATA_APDU, commandApdu))) {
-            String stringToSend;
-            try {
-                stringToSend = text.toString().substring(pointer, pointer + 200);
-            } catch (IndexOutOfBoundsException e) {
-                Toast.makeText(this, "Reached the end of the file", Toast.LENGTH_SHORT).show();
-                stringToSend = "END";
+        } else {
+            if (commandString.contains(getDataAdpuString)) {
+                String amount = getAmount(commandApdu);
+                Log.i(TAG, " REceived amount:" + amount);
+                NFCPaymentSuccessScreen.Companion.launch(this, amount);
+                String stringToSend = "END";
+                pointer += 200;byte[] accountBytes = stringToSend.getBytes();
+                Log.i(TAG, "Sending substring, pointer : " + pointer + " , " + stringToSend);
+                return ConcatArrays(accountBytes, SELECT_OK_SW);
             }
-            pointer += 200;byte[] accountBytes = stringToSend.getBytes();
-            Log.i(TAG, "Sending substring, pointer : " + pointer + " , " + stringToSend);
-            return ConcatArrays(accountBytes, SELECT_OK_SW);
+
+            else {
+                    return UNKNOWN_CMD_SW;
+
+            }
         }
-
-        else {
-                return UNKNOWN_CMD_SW;
-
-        }
-    }
-
-    private void launchNfcPaymentSuccessScreen() {
-
     }
 
     @Override
@@ -163,6 +158,11 @@ public class LoyaltyCardService extends HostApduService {
                 aid.length() / 2) + aid);
     }
 
+    public static String getAmount(byte[] command) {
+        String inputString = ByteArrayToHexString(command);
+        return inputString.replace(GET_DATA_APDU_HEADER, "");
+    }
+
     /**
      * Build APDU for GET_DATA command. See ISO 7816-4.
      *
@@ -170,7 +170,7 @@ public class LoyaltyCardService extends HostApduService {
      */
     public static byte[] BuildGetDataApdu() {
         // Format: [CLASS | INSTRUCTION | PARAMETER 1 | PARAMETER 2 | LENGTH | DATA]
-        return HexStringToByteArray(GET_DATA_APDU_HEADER + "0FFF");
+        return HexStringToByteArray(GET_DATA_APDU_HEADER);
     }
 
     /**
@@ -232,20 +232,5 @@ public class LoyaltyCardService extends HostApduService {
             offset += array.length;
         }
         return result;
-    }
-
-    private void readFromFile() {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

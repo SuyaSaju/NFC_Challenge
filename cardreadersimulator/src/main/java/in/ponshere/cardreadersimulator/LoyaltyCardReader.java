@@ -102,6 +102,7 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
                     // Inform CardReaderFragment of received account number
                     if (true) {
                         timeTaken = System.currentTimeMillis();
+
                         while (!(gotData.contains("END"))) {
                             byte[] getCommand = BuildGetDataApdu();
                             Log.i(TAG, "Sending: " + ByteArrayToHexString(getCommand));
@@ -123,16 +124,6 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
 
                     }
                     mAccountCallback.get().onAccountReceived(accountNumber);
-
-                    /*String seedVal = "PRESHAREDKEY";
-                    String decodedString = null;
-                    try {
-                        decodedString = AESHelper.decrypt(seedVal, accountNumber);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("ARNAV", "failed to decrypt");
-                        decodedString = accountNumber;
-                    }*/
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Error communicating with card: " + e.toString());
@@ -159,7 +150,7 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
      */
     public static byte[] BuildGetDataApdu() {
         // Format: [CLASS | INSTRUCTION | PARAMETER 1 | PARAMETER 2 | LENGTH | DATA]
-        return HexStringToByteArray(GET_DATA_APDU_HEADER + "0FFF");
+        return HexStringToByteArray(GET_DATA_APDU_HEADER + String.format("%02X", "5000".length() / 2) + "5000" );
     }
 
     /**
