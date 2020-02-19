@@ -59,14 +59,12 @@ public class CardReaderUI extends AppCompatActivity implements LoyaltyCardReader
 
     @Override
     public void onAccountReceived(final String account) {
-        // This callback is run on a background thread, but updates to UI elements must be performed
-        // on the UI thread.
-        stringReceived.append(account).append("\n");
+
         if (!account.contains("END")) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    cardDetails.setText(stringReceived);
+                    cardDetails.setText(account);
                 }
             });
         }

@@ -32,6 +32,8 @@ class CardDetailsFragment : Fragment() {
 
         view.findViewById<View>(R.id.btnSave).setOnClickListener {
             CardStorage.saveCardNumber(edtCardNumber.text.toString())
+            tvCardStatus.visibility = View.VISIBLE
+
         }
     }
 

@@ -15,4 +15,5 @@
     <string name="title_activity_nfcpayment_success_screen">NFCPaymentSuccessScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="your_card_details_are_saved_ntap_to_pay_now">Your card details are saved.  \nTap to pay now!</string>
 </resources>

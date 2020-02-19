@@ -30,4 +30,20 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>
 
+    <TextView
+        android:id="@+id/tvCardStatus"
+        app:layout_constraintTop_toBottomOf="@id/btnSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:lines="3"
+        android:text="@string/your_card_details_are_saved_ntap_to_pay_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
