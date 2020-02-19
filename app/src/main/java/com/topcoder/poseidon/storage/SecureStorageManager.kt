@@ -1,9 +1,18 @@
 package com.topcoder.poseidon.storage
 
 import android.content.Context
+import android.os.Build
 
 object SecureStorageManager : SecureStorage {
-    private var passwordStorage: SecureStorage = SecureStorageSDK23()
+    private var passwordStorage: SecureStorage
+    init {
+        if(Build.VERSION.SDK_INT >=23) {
+            passwordStorage = SecureStorageSDK23()
+        } else {
+            passwordStorage = SecureStorageSDK18()
+        }
+    }
+
 
     override fun init(context: Context): Boolean {
         return passwordStorage.init(context)
