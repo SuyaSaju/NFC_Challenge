@@ -23,6 +23,8 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.topcoder.poseidon.storage.CardStorage;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -111,7 +113,7 @@ public class LoyaltyCardService extends HostApduService {
         // If the APDU matches the SELECT AID command for this service,
         // send the loyalty card account number, followed by a SELECT_OK status trailer (0x9000).
         if (Arrays.equals(SELECT_APDU, commandApdu)) {
-            String account = "Loyalty Card";
+            String account = CardStorage.INSTANCE.getLastSavedCardNumber();
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
             readFromFile();
