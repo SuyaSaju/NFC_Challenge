@@ -126,7 +126,7 @@ public class LoyaltyCardService extends HostApduService {
             if (commandString.contains(getDataAdpuString)) {
                 String amount = getAmount(commandApdu);
                 Log.i(TAG, " REceived amount:" + amount);
-                NFCPaymentSuccessScreen.Companion.launch(this, amount);
+                NFCPaymentSuccessScreen.Companion.launch(this, amount.substring(2));
                 String stringToSend = "END";
                 pointer += 200;byte[] accountBytes = stringToSend.getBytes();
                 Log.i(TAG, "Sending substring, pointer : " + pointer + " , " + stringToSend);
