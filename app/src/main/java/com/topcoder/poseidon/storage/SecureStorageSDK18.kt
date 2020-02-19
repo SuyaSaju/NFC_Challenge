@@ -25,7 +25,7 @@ import javax.security.auth.x500.X500Principal
 private const val LOG_TAG = "SecureStorageSDK18"
 val PREFERENCES_FILE = "settings"
 
-
+//API Level >=18 <23: Android Keystore available without AES support
 internal class SecureStorageSDK18 : SecureStorage {
 
     private var preferences: SharedPreferences? = null
@@ -140,7 +140,7 @@ internal class SecureStorageSDK18 : SecureStorage {
         return true
     }
 
-    override fun setData(key: String, data: ByteArray) {
+    override fun save(key: String, data: ByteArray) {
         var ks: KeyStore? = null
         try {
             ks = KeyStore.getInstance(KEYSTORE_PROVIDER_ANDROID_KEYSTORE)
@@ -225,7 +225,7 @@ internal class SecureStorageSDK18 : SecureStorage {
 
     }
 
-    override fun getData(key: String): ByteArray? {
+    override fun get(key: String): ByteArray? {
         var ks: KeyStore? = null
         try {
             ks = KeyStore.getInstance(KEYSTORE_PROVIDER_ANDROID_KEYSTORE)

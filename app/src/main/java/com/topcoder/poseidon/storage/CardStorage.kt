@@ -3,11 +3,11 @@ package com.topcoder.poseidon.storage
 object CardStorage {
 
     fun saveCardNumber(cardNumber: String) {
-        SecureStorageManager.setData("card", cardNumber.toByteArray())
+        SecureStorageManager.save("card", cardNumber.toByteArray())
     }
 
     fun getLastSavedCardNumber(): String {
-        SecureStorageManager.getData("card")?.let {
+        SecureStorageManager.get("card")?.let {
             return String(it)
         }
         return ""
