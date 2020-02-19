@@ -122,8 +122,6 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
 
                             }
                         }
-                        mAccountCallback.get().onAccountReceived(gotData);
-
                     }
                     mAccountCallback.get().onAccountReceived(accountNumber);
                 }
