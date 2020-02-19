@@ -24,6 +24,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.topcoder.poseidon.MainActivity;
+import com.topcoder.poseidon.NFCPaymentSuccessScreen;
 import com.topcoder.poseidon.storage.CardStorage;
 
 import java.io.BufferedReader;
@@ -118,7 +119,7 @@ public class LoyaltyCardService extends HostApduService {
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
 //            readFromFile();
-            MainActivity.Companion.launchNfcPaymentSuccessScreen();
+            NFCPaymentSuccessScreen.Companion.launch(this);
 
             return ConcatArrays(accountBytes, SELECT_OK_SW);
         } else if ((Arrays.equals(GET_DATA_APDU, commandApdu))) {

@@ -11,4 +11,8 @@
     <string name="successfully_paid_msg">Successfully paid.</string>
     <string name="successfully_paid_close">Close</string>
     <string name="card_title">Loyalty Card</string>
+
+    <string name="title_activity_nfcpayment_success_screen">NFCPaymentSuccessScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
