@@ -41,7 +41,7 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
     // "OK" status word sent in response to SELECT AID command (0x9000)
     private static final byte[] SELECT_OK_SW = {(byte) 0x90, (byte) 0x00};
 
-    String gotData = "", finalGotData = "";
+   String finalGotData = "";
 
     long timeTaken = 0;
 
@@ -102,7 +102,9 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
                     // Inform CardReaderFragment of received account number
                     if (true) {
                         timeTaken = System.currentTimeMillis();
+                        String gotData = "";
 
+                        Log.i(TAG, "Received data: " + gotData);
                         while (!(gotData.contains("END"))) {
                             byte[] getCommand = BuildGetDataApdu();
                             Log.i(TAG, "Sending: " + ByteArrayToHexString(getCommand));
