@@ -1,7 +1,5 @@
 package com.topcoder.poseidon.storage
 
-import kotlinx.android.synthetic.main.fragment_home.*
-
 object CardStorage {
 
     fun saveCardNumber(cardNumber: String) {
