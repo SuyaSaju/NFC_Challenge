@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.viewPager.setAdapter(sectionsPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
-            setCurrentTab(SectionsPagerAdapter.SCANNER_TAB_INDEX);
+            setCurrentTab(SectionsPagerAdapter.Companion.getSCANNER_TAB_INDEX());
         }
     }
 

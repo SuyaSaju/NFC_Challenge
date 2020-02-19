@@ -150,7 +150,7 @@ public class ScannerFragment extends Fragment implements ZXingScannerView.Result
                 public void onClick(DialogInterface dialogInterface, int position) {
                     resumeCameraPreview();
                     dialogInterface.cancel();
-                    ((MainActivity) activity).setCurrentTab(SectionsPagerAdapter.HOME_TAB_INDEX);
+                    ((MainActivity) activity).setCurrentTab(SectionsPagerAdapter.Companion.getHOME_TAB_INDEX());
                 }
             })
             .setPositiveButton(R.string.scan_result_confirm, new DialogInterface.OnClickListener() {
@@ -165,7 +165,7 @@ public class ScannerFragment extends Fragment implements ZXingScannerView.Result
                             public void onClick(DialogInterface dialogInterface, int position) {
                                 resumeCameraPreview();
                                 dialogInterface.dismiss();
-                                ((MainActivity) activity).setCurrentTab(SectionsPagerAdapter.HOME_TAB_INDEX);
+                                ((MainActivity) activity).setCurrentTab(SectionsPagerAdapter.Companion.getHOME_TAB_INDEX());
                             }
                         })
                         .show();
