@@ -36,14 +36,6 @@ open class MainActivity : AppCompatActivity() {
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
-
-        intent?.let {
-            it.getStringExtra(TARGET)?.let {
-                if(it == NFC_PAYMENT_SUCCESS) {
-                    setCurrentTab(2)
-                }
-            }
-        }
     }
 
     public override fun onStart() {
@@ -62,14 +54,5 @@ open class MainActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "NFC:Card:Activity"
-        private const val TARGET = "target"
-        private const val NFC_PAYMENT_SUCCESS = "nfc_payment_success"
-
-        fun launchNfcPaymentSuccessScreen(context: Context) {
-            val successIntent = Intent(context, MainActivity::class.java)
-            successIntent.putExtra(TARGET, NFC_PAYMENT_SUCCESS)
-            successIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(successIntent)
-        }
     }
 }
