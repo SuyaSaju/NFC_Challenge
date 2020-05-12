@@ -19,36 +19,13 @@ package com.topcoder.poseidon.card;
 import android.content.Intent;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.topcoder.poseidon.MainActivity;
 import com.topcoder.poseidon.NFCPaymentSuccessScreen;
 import com.topcoder.poseidon.storage.CardStorage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * This is a sample APDU Service which demonstrates how to interface with the card emulation support
- * added in Android 4.4, KitKat.
- *
- * <p>This sample replies to any requests sent with the string "Hello World". In real-world
- * situations, you would need to modify this code to implement your desired communication
- * protocol.
- *
- * <p>This sample will be invoked for any terminals selecting AIDs of 0xF11111111, 0xF22222222, or
- * 0xF33333333. See src/main/res/xml/aid_list.xml for more details.
- *
- * <p class="note">Note: This is a low-level interface. Unlike the NdefMessage many developers
- * are familiar with for implementing Android Beam in apps, card emulation only provides a
- * byte-array based communication channel. It is left to developers to implement higher level
- * protocol support as needed.
- */
 public class LoyaltyCardService extends HostApduService {
     private static final String TAG = "NFC:Card";
     // AID for our loyalty card service.
@@ -65,17 +42,8 @@ public class LoyaltyCardService extends HostApduService {
     private static final byte[] SELECT_APDU = BuildSelectApdu(SAMPLE_LOYALTY_CARD_AID);
     private static final byte[] GET_DATA_APDU = BuildGetDataApdu();
 
-    /*File IO Stuffs*/
-    File sdcard = Environment.getExternalStorageDirectory();
-    File file = new File(sdcard,"file.txt");
-    StringBuilder text = new StringBuilder();
     int pointer;
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG,"Card service started");
-        return super.onStartCommand(intent, flags, startId);
-    }
 
     /**
      * Called if the connection to the NFC card is lost, in order to let the application know the
